@@ -4,6 +4,9 @@ isElementInList(El, [_|Tail]) :-
     isElementInList(El, Tail).
 
 %Definitions for reverseList(List, ReversedList)
+reverseList([], []).
+reverseList([SingleElement|[]], [SingleElement|[]]).
+%reverseList([Head|Tail],
 
 %insertElementIntoListEnd(El, List, NewList)
 
