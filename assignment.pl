@@ -16,4 +16,5 @@ insertElementIntoListEnd([], List, List).
 %Definitions for mergeLists(List1, List2, Merged)
 mergeLists([], List, List).
 mergeLists(List, [], List).
+mergeLists(List1, [SingleElement|[]], [List1, SingleElement]).
 mergeLists(List1, List2, [List1, List2]).
