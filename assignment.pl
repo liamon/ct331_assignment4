@@ -17,11 +17,10 @@ mergeLists([Head|Tail1], List2, [Head|TailOfMerged]) :-
     mergeLists(Tail1, List2, TailOfMerged).
 
 %Definitions for reverseList(List, ReversedList)
-reverseList([], []).
-%reverseList([SingleElement|[]], [SingleElement|[]]).
-reverseList([Head|Tail], ReversedList) :-
+reverseList([], []). % Base case.
+reverseList([Head|Tail], ReversedList) :- % Reduce case.
     reverseList(Tail, ReversedTail),
-    mergeLists(ReversedTail, Head, ReversedList).
+    mergeLists(ReversedTail, [Head], ReversedList).
 
 %insertElementIntoListEnd(El, List, NewList)
 insertElementIntoListEnd(El, List, NewList) :-
