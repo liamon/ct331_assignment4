@@ -4,16 +4,21 @@ isElementInList(El, [_|Tail]) :-
     isElementInList(El, Tail).
 
 %Definitions for mergeLists(List1, List2, Merged)
-%mergeLists([], List, List).
-mergeLists(List, [], List).
-%mergeLists(List1, [SingleElement|[]], [List1, SingleElement]).
-%mergeLists(List1, List2, [List1, List2]).
-mergeLists(List1, [Head|Tail], Merged) :-
-    mergeLists([List1, Head], Tail, Merged).
+% http://www.cse.unsw.edu.au/~billw/cs9414/notes/prolog/intro.html#lists
+%
+% The base case is when the first list is empty.
+% The reduce case is removing the first element from the list.
+%
+% Since Merged stars off as an unbound value, we can say it has the
+% same Head without a problem. After the rule reaches the base case,
+% each exit will add an element from List1 to the front of List2.
+mergeLists([], List, List).
+mergeLists([Head|Tail1], List2, [Head|TailOfMerged]) :-
+    mergeLists(Tail1, List2, TailOfMerged).
 
 %Definitions for reverseList(List, ReversedList)
 reverseList([], []).
-reverseList([SingleElement|[]], [SingleElement|[]]).
+%reverseList([SingleElement|[]], [SingleElement|[]]).
 reverseList([Head|Tail], ReversedList) :-
     reverseList(Tail, ReversedTail),
     mergeLists(ReversedTail, Head, ReversedList).
